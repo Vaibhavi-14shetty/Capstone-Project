@@ -1,0 +1,56 @@
+/* Full page background */
+.dash-main {
+  min-height: 100vh;
+  width: 100%;
+  background:linear-gradient(to right, #ff00cc,#333399);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Center dashboard card */
+.dash-card {
+  width: 90%;
+  max-width: 800px;
+  background: #161616;          /* solid black box */
+  border-radius: 18px;
+  padding: 35px;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.07);
+  text-align: center;
+}
+
+/* Main title */
+.dash-card h1 {
+  font-size: 2.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+/* Subtitle text */
+.dash-card p {
+  font-size: 1.1rem;
+  color: #cccccc;
+  margin-bottom: 25px;
+}
+
+/* Button styling */
+.dash-button {
+  background: #ffffff;
+  color: #000000;
+  padding: 12px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  transition: 0.3s;
+}
+
+.dash-button:hover {
+  background: #dddddd;
+}

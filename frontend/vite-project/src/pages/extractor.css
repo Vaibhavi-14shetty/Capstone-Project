@@ -1,0 +1,69 @@
+/* src/pages/extractor.css */
+.extract-main{
+  display:flex; 
+  justify-content:center; 
+  padding:12px;
+  /* background:rgb(109, 20, 182); */
+}
+.extract-card{
+  width:820px;
+  /* background:rgb(67, 28, 159); */
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:20px; 
+  border-radius:14px; 
+  color:#e8e3ff; 
+  border:1px solid rgba(255,255,255,0.03);
+}
+.transcript-input{
+  width:100%; 
+  min-height:180px; 
+  margin-top:10px; 
+  background:transparent; 
+  border:1px solid rgba(255,255,255,0.04);
+  color:#eee; 
+  padding:12px; 
+  border-radius:10px; 
+  resize:vertical;
+}
+.extract-actions{
+  display:flex; 
+  gap:12px; 
+  align-items:center; 
+  margin-top:12px}
+.file-input input[type=file]{display:none}
+.file-input{
+  background:transparent; border:1px dashed rgba(155,123,255,0.14); padding:8px 12px; border-radius:10px; cursor:pointer; color:var(--muted)}
+.extract-message{
+  margin-top:12px; 
+  color:var(--muted)}
+.hint{
+  margin-top:12px; 
+  color:#cbbef4; 
+  font-size:13px}
+.example{
+  background:rgba(155,123,255,0.06); 
+  padding:8px; 
+  border-radius:8px; 
+  margin-top:8px; 
+  color:#efe8ff}
+
+  .file-input {
+  background-color: #4a4cff !important;   /* BLUE */
+  color: white !important;
+  padding: 10px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+  display: inline-block;
+  transition: 0.3s ease;
+}
+
+.file-input:hover {
+  background-color: #6a6cff !important;
+}
+
+.file-input input[type="file"] {
+  display: none; /* hides actual file input */
+}
+

@@ -1,0 +1,30 @@
+/* Global styling */
+body {
+  background: rgb(13, 13, 13);
+
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+
+/* Container */
+.main-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Title */
+.title {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 18px;
+  opacity: 0.8;
+  margin-bottom: 30px;
+}

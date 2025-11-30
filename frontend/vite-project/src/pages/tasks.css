@@ -1,0 +1,54 @@
+.page-container {
+  color: white;
+  padding: 20px;
+}
+
+.add-btn {
+  background: #8b5cf6;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+.task-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #1f1f1f;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.task-form input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #2a2a2a;
+  color: white;
+}
+
+.task-list {
+  margin-top: 20px;
+  display: grid;
+  gap: 15px;
+}
+
+.task-card {
+  background: #111;
+  border: 1px solid #333;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.delete-btn {
+  background: #ef4444;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
