@@ -5,6 +5,8 @@
 An AI-powered system that automatically extracts tasks, owners, and deadlines from meeting transcripts and helps users manage tasks efficiently.
 Built with React (Vite) frontend + FastAPI backend + Gemini AI for NLP-powered extraction.
 
+
+
 🧠 Overview :
 
 The Meeting Outcome Executor Agent helps teams convert long meeting conversations into actionable tasks instantly.
@@ -16,6 +18,9 @@ View, edit, and manage tasks
 Add tasks manually
 Navigate through a clean, dark UI dashboard
 Use an organized schedule page
+
+
+
 
 
 📁 PROJECT STRUCTURE (Your Actual Folders)
@@ -77,6 +82,8 @@ BRAND NEW PROJECT/
 └── .venv/
 
 
+
+
 🚀 Features
 🔹 1. AI-Powered Task Extraction :
 Upload .txt, .pdf, or raw transcript text
@@ -111,6 +118,9 @@ Agent logic in extraction_agent.py
 Environment variables for API keys
 CORS enabled for frontend communication
 
+
+
+
 🛠️ Tech Stack
 Frontend
 React (Vite)
@@ -124,6 +134,10 @@ Google Gemini API
 Other
 .env config
 Axios for API calls
+
+
+
+
 
 ⚙️ Setup Instructions
 1️⃣ Backend Setup
@@ -152,6 +166,10 @@ Fetch all tasks.
 POST /tasks
 Add manual task.
 
+
+
+
+
 🎥 Demo Workflow:
 
 Open Dashboard
@@ -164,6 +182,7 @@ Visit Schedule page
 Smooth navigation across system
 
 
+
 📸 Screenshots:
 
 Dashboard: <img width="1863" height="889" alt="Dasboard png" src="https://github.com/user-attachments/assets/f0ed49fd-31d8-4cb8-bc40-5fe5341103d9" />
@@ -172,12 +191,15 @@ Tasks: <img width="1887" height="899" alt="Tasks png" src="https://github.com/us
 Schedule: <img width="1903" height="914" alt="Schedule png" src="https://github.com/user-attachments/assets/911827f6-b149-4409-9eac-dc4e11b32d88" />
 
 
+
+
 📸 UI Highlights:
 
 Dark premium theme
 Purple gradient cards
 Smooth buttons
 Consistent design across pages
+
 
 
 🏁 Conclusion:
