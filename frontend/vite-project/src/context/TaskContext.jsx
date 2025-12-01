@@ -1,33 +1,45 @@
 import React, { createContext, useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-const TaskContext = createContext();
+export const TaskContext = createContext();
 
 export function TaskProvider({ children }) {
   const [tasks, setTasks] = useState([]);
 
+  // Add a single task
   function addTask(task) {
-    // ensure id
-    setTasks((t) => [{ id: uuidv4(), ...task }, ...t]);
+    setTasks((prev) => [{ id: uuidv4(), ...task }, ...prev]);
   }
 
+  // Add multiple tasks (from extractor)
   function addTasks(newTasksArray) {
-    // dedupe by text if you want — simple concat for now
-    const toAdd = newTasksArray.map((tk) => ({ id: uuidv4(), ...tk }));
-    setTasks((t) => [...toAdd, ...t]);
+    const formattedTasks = newTasksArray.map((tk) => ({
+      id: uuidv4(),
+      ...tk,
+    }));
+
+    setTasks((prev) => [...formattedTasks, ...prev]);
   }
 
-  function removeTask(id) {
-    setTasks((t) => t.filter((x) => x.id !== id));
-  }
+  // Remove ONE task at index
+  const removeTask = (index) => {
+    setTasks((prev) => prev.filter((_, i) => i !== index));
+  };
 
+  // Clear all tasks
   function clearTasks() {
     setTasks([]);
   }
 
   return (
     <TaskContext.Provider
-      value={{ tasks, addTask, addTasks, removeTask, clearTasks }}
+      value={{
+        tasks,
+        addTask,
+        addTasks,
+        clearTasks,
+        removeTask,
+      }}
     >
       {children}
     </TaskContext.Provider>

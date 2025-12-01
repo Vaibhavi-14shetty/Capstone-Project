@@ -1,29 +1,39 @@
-import { useTasks } from "../context/TaskContext";
-import Taskcard from "../components/Taskcard";
-import AddTaskModal from "../components/AddTaskModal";
+import { useContext } from "react";
+import { TaskContext } from "../context/TaskContext";
 import "./tasks.css";
+import { X } from "lucide-react"; // delete icon
 
 export default function Tasks() {
-  const { tasks, removeTask, clearTasks } = useTasks();
+  const { tasks, clearTasks, removeTask } = useContext(TaskContext);
 
   return (
-    <div className="tasks-main">
+    <div className="tasks-container">
       <div className="tasks-header">
-        <h2>Tasks ({tasks.length})</h2>
-        <div className="tasks-actions">
-          <AddTaskModal onAdd={(t)=>{ /* AddTaskModal will call context when used inside page */ }} />
-          <button className="primary-btn" onClick={() => clearTasks()} style={{background:"transparent", border:"1px solid rgba(155,123,255,0.08)"}}>Clear All</button>
+        <h1>Tasks ({tasks.length})</h1>
+
+        <div className="tasks-buttons">
+          <button className="add-btn">+ Add Task</button>
+          <button className="clear-btn" onClick={clearTasks}>Clear All</button>
         </div>
       </div>
 
-      {tasks.length === 0 && (
-        <div className="empty">No tasks yet. Extract from a transcript or add manually.</div>
-      )}
+      <div className="tasks-list">
+        {tasks.length === 0 ? (
+          <p className="no-tasks">No tasks available</p>
+        ) : (
+          tasks.map((task, index) => (
+            <div className="task-card" key={index}>
+              <button className="delete-btn" onClick={() => removeTask(index)}>
+                <X size={18} />
+              </button>
 
-      <div className="tasks-grid">
-        {tasks.map((t) => (
-          <Taskcard key={t.id} task={t} onRemove={removeTask} />
-        ))}
+              <p className="task-text">Task: {task.task}</p>
+
+              <p><strong>Owner:</strong> {task.owner || "—"}</p>
+              <p><strong>Deadline:</strong> {task.deadline || "No deadline"}</p>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

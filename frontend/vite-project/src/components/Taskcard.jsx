@@ -1,4 +1,4 @@
-import "./ui.css";
+ import "./ui.css";
 
 export default function Taskcard({ task, onRemove }) {
   return (
@@ -10,6 +10,7 @@ export default function Taskcard({ task, onRemove }) {
         </button>
       </div>
 
+        <p><strong>Task:</strong> {task.task}</p>
       <p><strong>Owner:</strong> {task.owner || "—"}</p>
       <p><strong>Deadline:</strong> {task.deadline || "No deadline"}</p>
     </div>

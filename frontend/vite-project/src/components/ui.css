@@ -1,62 +1,208 @@
 /* src/components/ui.css */
-:root{
-  --bg:#0b0b0f;
-  --card:#0f0f14;
-  --muted:#bdb7d9;
-  --accent1:#7b61ff; /* purple */
-  --accent2:#9b7bff;
-  --glass: rgba(255,255,255,0.03);
+:root {
+  --bg: #0b0b0f;
+  --card: #0f0f14;
+  --muted: #bdb7d9;
+  --accent1: #7b61ff;
+  --accent2: #9b7bff;
+  --glass: rgba(255, 255, 255, 0.03);
 }
 
-*{box-sizing:border-box;font-family:Inter,ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
-
-a{color:inherit;text-decoration:none}
-
-.nav-header{
-  position:sticky; top:0; z-index:40;
-  background:linear-gradient(180deg, rgba(11,11,15,0.7), rgba(11,11,15,0.6));
-  border-bottom:1px solid rgba(255,255,255,0.03);
-}
-.nav-inner{
-  display:flex; align-items:center; justify-content:space-between;
-  max-width:1100px; margin:0 auto; padding:14px 20px;
-}
-.brand{color:white; font-weight:700; display:flex; align-items:center; gap:10px; cursor:pointer}
-.brand-dot{width:10px; height:10px; border-radius:50%; background:linear-gradient(90deg,var(--accent1),var(--accent2)); box-shadow:0 0 12px rgba(123,97,255,0.28)}
-.nav-links a{margin-left:18px; color:var(--muted); padding:6px 10px; border-radius:8px; font-weight:600}
-.nav-links a.active{background:linear-gradient(90deg, rgba(123,97,255,0.08), rgba(155,123,255,0.06)); color:var(--accent1)}
-
-.app-container{max-width:1100px; margin:28px auto; padding:0 20px; min-height:calc(100vh - 80px);}
-
-.primary-btn{
-  background:linear-gradient(90deg,var(--accent1),var(--accent2));
-  border:none; color:white; padding:8px 14px; border-radius:10px; font-weight:600; cursor:pointer;
-  box-shadow:0 6px 22px rgba(123,97,255,0.12);
+* {
+  box-sizing: border-box;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-button{cursor:pointer}
-
-/* task card */
-.task-card{
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border:1px solid rgba(255,255,255,0.03);
-  padding:14px; border-radius:12px; color:white;
-}
-.task-top{display:flex; align-items:center; justify-content:space-between}
-.remove-btn{
-  background:transparent;color:var(--muted); border:1px solid rgba(255,255,255,0.04); border-radius:8px; padding:2px 8px;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* modal */
-.modal-backdrop{
-  position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.5);
+/* ---------------- NAVBAR ---------------- */
+/* NAVBAR WRAPPER */
+.top-nav {
+  width: 100%;
+  height: 60px;
+  background: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: "Poppins", sans-serif;
 }
-.modal-card{
-  background:var(--card); padding:18px; border-radius:14px; width:420px; color:var(--muted);
-  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+
+/* LEFT SECTION */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.add-form input{
-  width:100%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid rgba(255,255,255,0.04);
-  background:transparent; color:white;
+
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  background: #7a24f3;
+  border-radius: 50%;
 }
-.modal-actions{display:flex; justify-content:flex-end; gap:8px; margin-top:8px}
+
+.nav-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* RIGHT SIDE MENU */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-right a {
+  color: #dddddd;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT */
+.nav-right a:hover {
+  color: #ffffff;
+}
+
+/* ACTIVE TAB */
+.nav-active {
+  background: #2a1a53;
+  color: #b08fff !important;
+  font-weight: 500;
+}
+
+
+/* ---------------- FULL PAGE GRADIENT BACKGROUND ---------------- */
+body {
+  background: linear-gradient(115deg, #ff00cc, #7d2cff 40%, #4b3bff);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------------- CENTER CARD (Dashboard main box) ---------------- */
+.center-card {
+  background: #0d0d12;
+  width: 70%;
+  margin: 80px auto;
+  padding: 50px 60px;
+  border-radius: 28px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.45);
+  text-align: center;
+  color: white;
+}
+
+/* Title */
+.center-card h1 {
+  font-size: 2.4rem;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+/* Subtitle */
+.center-card p {
+  font-size: 1.08rem;
+  color: #cfc9ff;
+  margin-bottom: 28px;
+}
+
+/* Buttons */
+.center-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.primary-btn {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ---------------- TASK CARDS ---------------- */
+.task-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 14px;
+  border-radius: 12px;
+  color: white;
+}
+
+.task-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.remove-btn {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  padding: 2px 8px;
+}
+
+/* ---------------- MODAL ---------------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-card {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 14px;
+  width: 420px;
+  color: var(--muted);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.add-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}

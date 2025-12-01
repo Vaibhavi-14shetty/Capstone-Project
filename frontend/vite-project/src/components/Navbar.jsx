@@ -1,31 +1,35 @@
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./ui.css";
 
 export default function Navbar() {
-  const loc = useLocation();
-
   return (
-    <header className="nav-header">
-      <div className="nav-inner">
-        <div className="brand" onClick={() => (window.location.href = "/")}>
-          <span className="brand-dot" /> Meeting Outcome
-        </div>
-
-        <nav className="nav-links">
-          <Link className={loc.pathname === "/" ? "active" : ""} to="/">
-            Dashboard
-          </Link>
-          <Link className={loc.pathname === "/extract" ? "active" : ""} to="/extract">
-            Extractor
-          </Link>
-          <Link className={loc.pathname === "/tasks" ? "active" : ""} to="/tasks">
-            Tasks
-          </Link>
-          <Link className={loc.pathname === "/schedule" ? "active" : ""} to="/schedule">
-            Schedule
-          </Link>
-        </nav>
+    <div className="top-nav">
+      
+      {/* LEFT SIDE */}
+      <div className="nav-left">
+        <span className="nav-dot"></span>
+        <span className="nav-title">Meeting Outcome</span>
       </div>
-    </header>
+
+      {/* RIGHT SIDE MENU */}
+      <div className="nav-right">
+        <NavLink to="/" className={({ isActive }) => isActive ? "nav-active" : ""}>
+          Dashboard
+        </NavLink>
+
+        <NavLink to="/extract" className={({ isActive }) => isActive ? "nav-active" : ""}>
+          Extractor
+        </NavLink>
+
+        <NavLink to="/tasks" className={({ isActive }) => isActive ? "nav-active" : ""}>
+          Tasks
+        </NavLink>
+
+        <NavLink to="/schedule" className={({ isActive }) => isActive ? "nav-active" : ""}>
+          Schedule
+        </NavLink>
+      </div>
+
+    </div>
   );
 }

@@ -15,8 +15,10 @@ load_dotenv()
 logger = logging.getLogger("extraction_agent")
 logging.basicConfig(level=logging.INFO)
 
+
 class ExtractionError(Exception):
     pass
+
 
 class ExtractionAgent:
     """
@@ -47,7 +49,6 @@ class ExtractionAgent:
         try:
             self.model = genai.GenerativeModel(self.model_name)
         except Exception as e:
-            # still allow continuing; actual call may raise later
             logger.warning("Could not instantiate GenerativeModel at init: %s", e)
             self.model = None
 
@@ -67,9 +68,7 @@ class ExtractionAgent:
         except Exception:
             pass
 
-        # 2) find first JSON array or object using regex
-        # Try to extract a substring that starts with '[' or '{' and ends with matching ']' or '}'
-        # We'll be conservative: find the first '[' and try to find a matching closing ']' by scanning.
+        # 2) find first JSON array/object using regex
         def find_balanced(s: str, opener: str, closer: str):
             start = s.find(opener)
             if start == -1:
@@ -81,7 +80,7 @@ class ExtractionAgent:
                 elif s[i] == closer:
                     depth -= 1
                     if depth == 0:
-                        return s[start : i + 1]
+                        return s[start:i + 1]
             return None
 
         # try array first
@@ -100,10 +99,8 @@ class ExtractionAgent:
             except Exception:
                 pass
 
-        # 3) fallback: attempt heuristic fixes
-        # replace single quotes with double quotes (only if it seems like JSON-ish)
+        # 3) fallback
         heuristic = text.strip()
-        # only try if it looks like a list or object with single quotes
         if (heuristic.startswith("[") or heuristic.startswith("{")) and ("'" in heuristic):
             heur = heuristic.replace("'", '"')
             try:
@@ -111,48 +108,47 @@ class ExtractionAgent:
             except Exception:
                 pass
 
-        # Give up
         raise ValueError("Could not parse JSON from model output")
 
     def extract(self, transcript: str) -> List[Dict[str, Any]]:
         """
         Given a transcript string, call the LLM to extract tasks.
-        Returns a Python list of dicts: [{ "task": "...", "owner": "...", "deadline": "..." }, ...]
+        Returns a Python list of dicts.
         """
         if not transcript or not transcript.strip():
             raise ExtractionError("Transcript is empty")
 
-        # Build a careful prompt that asks for strict JSON output
         prompt = f"""
-You are an assistant that extracts tasks from meeting transcripts.
+You are a task extraction assistant.
 
-Return ONLY a JSON array of objects (no extra explanation, code fences or commentary).
-Each object should contain these keys exactly: "task", "owner", "deadline".
-If owner or deadline is not present, use an empty string "" for that field.
+Extract ALL tasks from the transcript below and return ONLY a JSON list.
 
-Example output:
+Each task must follow this structure:
+
 [
   {{
-    "task": "Write project report",
-    "owner": "Alice",
-    "deadline": "Monday"
+    "task": "<short clear task>",
+    "owner": "<person responsible or null>",
+    "deadline": "<deadline or null>"
   }}
 ]
 
-Now extract tasks from the transcript below.
+### Rules:
+- If owner is not mentioned → set "owner": null
+- If deadline is not mentioned → set "deadline": null
+- TASK MUST ALWAYS BE FILLED.
+- DO NOT ADD ANY EXTRA TEXT OUTSIDE JSON.
 
-Transcript:
-\"\"\"{transcript}\"\"\"
+### Transcript:
+{transcript}
 """
 
         try:
-            # Make the model call. The google.generativeai library provides model.generate_content in some versions.
             if self.model is None:
-                # instantiate now
                 self.model = genai.GenerativeModel(self.model_name)
 
             response = self.model.generate_content(prompt)
-            # older/newer client may use response.text or response.candidates[0].content
+
             raw_text = None
             if hasattr(response, "text"):
                 raw_text = response.text
@@ -163,30 +159,30 @@ Transcript:
 
             logger.info("LLM raw_text (first 500 chars): %s", raw_text[:500] if raw_text else "EMPTY")
 
-            # Try to parse JSON robustly
             parsed = self._safe_json_load(raw_text)
 
-            # Ensure output is a list of dicts
             if isinstance(parsed, dict):
-                # If model returned a single dict, wrap it
                 parsed = [parsed]
 
             if not isinstance(parsed, list):
                 raise ExtractionError("LLM returned JSON but not a list")
 
-            # Normalize items: ensure keys task/owner/deadline exist
+            # Normalize
             normalized = []
             for item in parsed:
                 if not isinstance(item, dict):
                     continue
+
                 task = item.get("task") or item.get("title") or item.get("text")
-                owner = item.get("owner") or item.get("assignee") or ""
-                deadline = item.get("deadline") or item.get("due") or ""
+
+                owner = item.get("owner") if "owner" in item else None
+                deadline = item.get("deadline") if "deadline" in item else None
+
                 if task:
                     normalized.append({
                         "task": str(task).strip(),
-                        "owner": str(owner).strip() if owner is not None else "",
-                        "deadline": str(deadline).strip() if deadline is not None else ""
+                        "owner": owner if owner not in ("", None, "null") else None,
+                        "deadline": deadline if deadline not in ("", None, "null") else None
                     })
 
             return normalized
@@ -194,4 +190,5 @@ Transcript:
         except Exception as e:
             logger.exception("Extraction failed: %s", e)
             raise ExtractionError(f"Extraction failed: {e}")
+
 

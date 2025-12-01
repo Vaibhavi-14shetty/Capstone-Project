@@ -1,54 +1,97 @@
-.page-container {
-  color: white;
-  padding: 20px;
+/* Main container */
+.tasks-container {
+  padding: 30px;
+  background-color: #000;
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
 }
 
-.add-btn {
-  background: #8b5cf6;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  cursor: pointer;
-  color: white;
-}
-
-.task-form form {
+/* Header layout */
+.tasks-header {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background: #1f1f1f;
-  padding: 20px;
-  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
-.task-form input {
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #444;
-  background: #2a2a2a;
-  color: white;
+.tasks-header h1 {
+  font-size: 28px;
+  font-weight: 700;
 }
 
-.task-list {
-  margin-top: 20px;
-  display: grid;
-  gap: 15px;
+/* Buttons group */
+.tasks-buttons {
+  display: flex;
+  gap: 12px;
 }
 
-.task-card {
-  background: #111;
-  border: 1px solid #333;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-.delete-btn {
-  background: #ef4444;
+/* Add Task button */
+.add-btn {
+  background-color: #6a4dfc;
   border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 8px 15px;
+  border-radius: 8px;
   color: white;
   cursor: pointer;
-  margin-top: 10px;
+  font-size: 14px;
 }
+
+.add-btn:hover {
+  background-color: #573ed9;
+}
+
+/* Clear All button */
+.clear-btn {
+  background-color: #333;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.clear-btn:hover {
+  background-color: #444;
+}
+
+/* No tasks message */
+.no-tasks {
+  font-size: 16px;
+  color: #bbb;
+  margin-top: 20px;
+}
+
+/* Individual task card */
+.task-card {
+  background-color: #0d0d0d;
+  border: 1px solid #eae6e6;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+/* Delete button icon */
+.delete-btn {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  border: none;
+  background: transparent;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  color: #fff;
+}
+
+/* Task text styling */
+.task-text {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
