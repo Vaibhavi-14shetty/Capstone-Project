@@ -255,10 +255,10 @@ Smooth navigation across system
 
 📸 Screenshots:
 
-Dashboard: <img width="1863" height="889" alt="Dasboard png" src="https://github.com/user-attachments/assets/f0ed49fd-31d8-4cb8-bc40-5fe5341103d9" />
-Extractor: <img width="1903" height="912" alt="Extractor png" src="https://github.com/user-attachments/assets/c3fb4682-42b8-47b2-aedf-7dab12b17ec8" />
-Tasks: <img width="1887" height="899" alt="Tasks png" src="https://github.com/user-attachments/assets/cc572c2b-f71c-4a98-a65d-6b52eb378360" />
-Schedule: <img width="1903" height="914" alt="Schedule png" src="https://github.com/user-attachments/assets/911827f6-b149-4409-9eac-dc4e11b32d88" />
+Dashboard: <img width="1918" height="918" alt="Dashboard png" src="https://github.com/user-attachments/assets/4a76d523-cf60-422f-86f2-a577d7ff03ba" />
+Extractor:<img width="1892" height="881" alt="Task Extractor png" src="https://github.com/user-attachments/assets/1963f64d-f02f-4cee-9da0-c1722f56cb7b" />
+Tasks:<img width="1882" height="896" alt="Tasks png" src="https://github.com/user-attachments/assets/99c2ffe1-3da3-4671-a20a-c129d7589745" />
+Schedule:<img width="1916" height="867" alt="Schedule png" src="https://github.com/user-attachments/assets/42dcbc64-05a9-487a-a735-b00447edd9fa" />
 
 
 
